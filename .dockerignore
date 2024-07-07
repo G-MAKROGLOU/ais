@@ -1,0 +1,9 @@
+.env
+.env.dist
+.gitignore
+.docker
+docs
+tests
+.git
+Makefile
+.dockerignore
