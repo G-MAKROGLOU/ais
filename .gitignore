@@ -3,3 +3,4 @@
 .env.dev
 .end.prod
 bin
+/tmp
