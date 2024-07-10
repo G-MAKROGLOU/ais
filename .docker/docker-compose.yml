@@ -10,8 +10,9 @@ services:
   api:
     restart: always
     container_name: ais_api
+    working_dir: /ais_api
     env_file:
-      ../.env
+      ../.env.dev
     build:
       context: ../
       dockerfile: ./.docker/Dockerfile
@@ -20,6 +21,8 @@ services:
     networks:
       - quick-start_back_end
     logging: *default-logging
+    volumes:
+      - ..:/ais_api
     healthcheck:
       test: curl http://localhost:3000/ready
       interval: 30s

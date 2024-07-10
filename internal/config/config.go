@@ -3,7 +3,6 @@ package config
 import (
 	"log"
 
-	"github.com/G-MAKROGLOU/ais/pkg/utils"
 	"github.com/spf13/viper"
 )
 
@@ -19,8 +18,9 @@ func LoadEnv() {
 
 	env := viper.GetString("AIS_ENV")
 
-	if env == "development" {
-		viper.SetConfigFile(".env")
+	if env == "local" {
+		viper.SetConfigType("env")
+		viper.SetConfigFile(".env.local")
 		if err := viper.ReadInConfig(); err != nil {
 			log.Fatalln("Failed to load development environment variables", err)
 		}
@@ -40,6 +40,4 @@ func LoadEnv() {
 		RabbitMQPort:     viper.GetString("RABBITMQ_PORT"),
 		RabbitMQTopic:    viper.GetString("RABBITMQ_TOPIC"),
 	}
-	utils.PrettyPrint(AppConfig)
-
 }

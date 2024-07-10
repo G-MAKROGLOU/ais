@@ -1,13 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"log"
-	"strings"
 
 	"github.com/G-MAKROGLOU/ais/internal/config"
 	"github.com/G-MAKROGLOU/ais/internal/rabbitmq"
 	"github.com/gofiber/fiber/v2"
 )
+
+type Test struct {
+	Message string `json:"message"`
+}
 
 func main() {
 	// load env
@@ -30,14 +34,19 @@ func main() {
 		UnescapePath:      true,
 	})
 
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.JSON(Test{
+			Message: "Hello World!",
+		})
+	})
 	// register middlewares
-	SetupCoreMiddlewares(app)
+	//core.SetupCoreMiddlewares(app)
 
 	// register routes and route specific middlewares
 
 	// listen per environment
-	if config.AppConfig.Env == "development" || config.AppConfig.Env == "staging" || strings.TrimSpace(config.AppConfig.Env) == "" {
-		log.Fatalln(app.Listen(config.AppConfig.Port))
+	if config.AppConfig.Env != "production" {
+		log.Fatalln(app.Listen(fmt.Sprintf(":%s", config.AppConfig.Port)))
 	}
 
 	if config.AppConfig.Env == "production" {

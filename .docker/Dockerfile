@@ -1,17 +1,14 @@
-FROM golang:alpine3.19 AS build
+FROM golang:1.22-alpine AS build
 
-WORKDIR /usr/src/app
+WORKDIR /ais_api
 
 COPY . .
 
-RUN cd /usr/src/app/cmd/ais && go build .
+RUN go install github.com/air-verse/air@latest
 
-
-FROM golang:alpine3.19
-
-WORKDIR /usr/src/app
-
-COPY --from=build ["/usr/src/app/cmd/ais/ais", "./"]
+# environment
+ENV AIS_ENV=$AIS_ENV
+ENV PORT=$PORT
 
 # postgres
 ENV POSTGRES_HOST=$POSTGRES_HOST
@@ -27,5 +24,6 @@ ENV RABBITMQ_PASSWORD=$RABBITMQ_PASSWORD
 ENV RABBITMQ_TOPIC=$RABBITMQ_TOPIC
 ENV RABBITMQ_PORT=$RABBITMQ_PORT
 
+EXPOSE $PORT
 
-CMD ["./ais"]
+CMD ["air", "-c", ".air.toml"]

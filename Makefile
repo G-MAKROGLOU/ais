@@ -1,8 +1,8 @@
 run-local:
 ifeq ($(OS),Windows_NT)
-	@set AIS_ENV=development&& go run ./cmd/ais/main.go
+	@set AIS_ENV=local&& go run ./cmd/ais/main.go
 else
-	@AIS_ENV=development go run ./cmd/ais/main.go
+	@AIS_ENV=local go run ./cmd/ais/main.go
 endif
 
 docker-start:

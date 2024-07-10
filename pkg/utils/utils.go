@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// PrettyPrint prints a struct into a pretty JSON format
+// PrettyPrint prints a struct into a human readable JSON format
 func PrettyPrint(s interface{}) {
 	b, _ := json.MarshalIndent(s, "", "  ")
 
