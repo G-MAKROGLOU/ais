@@ -45,7 +45,7 @@ For containerized runs you'll need a ```.env.dev``` environment file with all th
 
 ## OTHER ENVIRONMENTS
 
-There are two more ```AIS_ENV``` types of environment that are supported, ```staging``` and ```production```. These environments assume that the application is deployed on a provider and so you'll need to setup the environment variables according to the provider specification. In any environment other tha ```local```, the app is reading the variables directly from the OS (bare metal, container, or vm). For containers, use those environment types when running your image with the production ```Dockerfile``` that has multistage builds enabled, and does not use ```air```. 
+There are two more ```AIS_ENV``` types of environment that are supported, ```staging``` and ```production```. These environments assume that the application is deployed on a provider and so you'll need to setup the environment variables according to the provider specification. In any environment other than ```local```, the app is reading the variables directly from the OS (bare metal, container, or vm). For containers, use those environment types when running your image with the production ```Dockerfile``` that has multistage builds enabled, and does not use ```air```. 
 
 - To build the production or staging image run ```make build```. 
 
