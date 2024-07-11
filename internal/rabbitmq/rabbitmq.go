@@ -9,6 +9,7 @@ var RabbitMQ *amqp.Connection
 
 // RMQConnect connects to RabbitMQ
 func RMQConnect(url string) error {
+	
 	conn, err := amqp.Dial(url)
 
 	RabbitMQ = conn

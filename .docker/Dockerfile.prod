@@ -1,0 +1,17 @@
+FROM golang:1.22-alpine AS build
+
+WORKDIR /www/app
+
+COPY . .
+
+RUN go build -o bin/ais ./cmd/ais/main.go
+
+FROM golang:1.22-alpine
+
+WORKDIR /www/app
+
+COPY --from=build ["/www/app/bin/ais", "./"]
+
+EXPOSE 80
+
+CMD ["./ais"]

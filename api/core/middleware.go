@@ -26,6 +26,7 @@ import (
 
 // SetupCoreMiddlewares sets up all the core middlewares that apply to all routes
 func SetupCoreMiddlewares(app *fiber.App) {
+	
 	// cache middleware
 	app.Use(cache.New(cache.Config{
 		ExpirationGenerator: func(c *fiber.Ctx, cfg *cache.Config) time.Duration {

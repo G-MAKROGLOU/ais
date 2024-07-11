@@ -26,4 +26,4 @@ ENV RABBITMQ_PORT=$RABBITMQ_PORT
 
 EXPOSE $PORT
 
-CMD ["air", "-c", ".air.toml"]
+CMD ["air", "-c", ".air.nix.toml"]

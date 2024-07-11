@@ -1,6 +1,6 @@
 .env
 .env.local
 .env.dev
-.end.prod
+.env.prod
 bin
 /tmp

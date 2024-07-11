@@ -1,8 +1,8 @@
 run-local:
 ifeq ($(OS),Windows_NT)
-	@set AIS_ENV=local&& go run ./cmd/ais/main.go
+	@set AIS_ENV=local&& air -c .air.win.toml
 else
-	@AIS_ENV=local go run ./cmd/ais/main.go
+	@AIS_ENV=local air -c .air.nix.toml
 endif
 
 docker-start:
@@ -19,4 +19,7 @@ else
 	@PORT=3005 docker compose -f ./.docker/docker-compose.yml -p ais-api down --rmi="all"
 endif
 	
+build:
+	docker build --tag "latest" -f ./.docker/Dockerfile.prod --rm --no-cache .
+.PHONY: build-prod
 

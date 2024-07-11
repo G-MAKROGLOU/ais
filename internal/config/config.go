@@ -25,6 +25,7 @@ func LoadEnv() {
 			log.Fatalln("Failed to load development environment variables", err)
 		}
 	}
+	
 
 	AppConfig = &Config{
 		Port:             viper.GetString("PORT"),
